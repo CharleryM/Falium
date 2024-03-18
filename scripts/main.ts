@@ -2,7 +2,12 @@ import { Gestion, Polices } from "./polices";
 import * as fs from 'fs';
 
 // Chemin vers le fichier Falium à interpréter
-const filePath: string = "fichier_test.fal";
+const filePath: string = process.argv[2]; // Le premier argument (process.argv[0]) est le chemin vers Node.js et le deuxième argument (process.argv[1]) est le chemin vers votre script
+
+if (!filePath) {
+    console.error("Veuillez spécifier le nom du fichier à interpréter.");
+    process.exit(1); // Quitter le script avec un code d'erreur
+}
 
 // Lire le contenu du fichier Falium
 fs.readFile(filePath, 'utf8', (err, data) => {
