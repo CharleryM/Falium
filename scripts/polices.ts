@@ -19,6 +19,22 @@ export class Polices {
     static Code(input: string): string {
         return input.replace(/\`(.*?)\`/g, '<code>$1</code>');
     }
+    static Title(input: string): string[]{
+        let taille_title: number = 0;
+        let lines: string[] = input.split('\n')
+        let hashtag: string[] = []
+        let title: string[] =[]
+        lines.forEach((line) => {
+            if (line.startsWith("#")) {
+                hashtag = line.split(' ');
+                taille_title = (hashtag[0].length);
+                title.push(`<h${taille_title}>${hashtag[1]}</h${taille_title}>\n`)
+            } else {
+                title.push(`${line}\n`)
+            }
+        })
+        return title
+    };
 }
 
 export class Gestion {
@@ -26,3 +42,4 @@ export class Gestion {
         return input.replace(/§/g, '<hr>')
     }
 }
+

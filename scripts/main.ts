@@ -17,11 +17,12 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     }
 
     let text: string = data;
-    let Text: string = Polices.Strong(text);
-    Text = Polices.Italic(Text);
-    Text = Polices.Mocked(Text);
-    Text = Polices.Code(Text);
-    Text = Gestion.horizontalBreck(Text);
+    // let Text: string = Polices.Strong(text);
+    // Text = Polices.Italic(Text);
+    // Text = Polices.Mocked(Text);
+    // Text = Polices.Code(Text);
+    // Text = Polices.Title(Text);
+    // Text = Gestion.horizontalBreck(Text);
 
-    console.log(Text);
+    console.log(Polices.Title(text));
 });
