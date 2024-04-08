@@ -10,5 +10,3 @@ Les commendes :
 - entourer le texte de ~~ pour mettre en railler
 - commencer la ligne par # pour le titre plus vous en ajouter a la suite plus le tritre sera petit avec un limite de taille de 6
 - § permet de faire un ligne de séparation.
-
-        `ont test`
