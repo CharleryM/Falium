@@ -40,6 +40,16 @@ export class Polices {
         let file: string = title.join('')
         return file
     };
+    static polices(text: string) {
+
+        let Text: string = Polices.Strong(text);
+        Text = Polices.Italic(Text);
+        Text = Polices.Mocked(Text);
+        Text = Polices.Code(Text);
+        Text = Polices.Title(Text);
+        return Text;
+    }
+    
 }
 
 
