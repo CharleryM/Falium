@@ -1,4 +1,5 @@
-import { Gestion, Polices } from "./polices";
+import { Polices } from './polices';
+import { Gestion } from './gestion';
 import * as fs from 'fs';
 
 export class ToFalium {
@@ -25,8 +26,8 @@ export class ToFalium {
 
             let text: string = data;
             let newText: string = '';
-            newText = Polices.polices(text);
-            newText = Gestion.horizontalBreck(newText);
+            newText = Polices.comiler(text);
+            newText = Gestion.HorizontalBreck(newText);
             console.log(newText);
         });
     }
