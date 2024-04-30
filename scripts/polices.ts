@@ -1,37 +1,44 @@
 export class Polices {
-
-    static Strong(input: string): string {             //gras
-        return input.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    static comiler(text: string) {                    //exécute toutes les polices
+        let compiled: string = Polices.Strong(text);
+        compiled = Polices.Italic(compiled);
+        compiled = Polices.Mocked(compiled);
+        compiled = Polices.Code(compiled);
+        compiled =  Polices.Title(compiled);
+        return compiled;
     }
-
-    static Italic(input: string): string {             //italique
-        return input.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        static polices(text: string): string {
+        throw new Error("Method not implemented.");
     }
-
-    static Mocked(input: string): string {             //barré
-        return input.replace(/\~\~(.*?)\~\~/g, '<s>$1</s>');
+    static Strong(text: string): string {             //gras
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     }
-
-    static Underline(input: string): string {          //souligné
-        return input.replace(/\_(.*?)\_/g, '<u>$1</u>');
+    static Italic(text: string): string {             //italique
+        return text.replace(/\*(.*?)\*/g, '<em>$1</em>');
     }
-
-    static Code(input: string): string {               //bloque de code
-        return input.replace(/\`(.*?)\`/g, '<code>$1</code>');
+    static Mocked(text: string): string {             //barré
+        return text.replace(/\~\~(.*?)\~\~/g, '<s>$1</s>');
     }
-    static Title(input: string): string {              //gestion des titre limiter à unetalle de h6
+    static Underline(text: string): string {          //souligné
+        return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
+    }
+    static Code(text: string): string {               //bloque de code
+        return text.replace(/\`(.*?)\`/g, '<code>$1</code>');
+    }
+    static Title(text: string): string {              //gestion des titre limiter à unetalle de h6
         let taille_title: number = 0;
-        let lines: string[] = input.split('\n')
+        let lines: string[] = text.split('\n')
         let hashtag: string[] = []
         let title: string[] = []
         lines.forEach((line) => {
             if (line.startsWith("#")) {
-                hashtag = line.split(' ');
+                hashtag = line.split(' ', 2);
                 taille_title = (hashtag[0].length);
+                const titleText =  line.substring(hashtag[0].length + 1);
                 if (taille_title > 6) {
                     title.push(`${line}`)
                 } else {
-                    title.push(`<h${taille_title}>${hashtag[1]}</h${taille_title}>\n`)
+                    title.push(`<h${taille_title}>${titleText}</h${taille_title}>\n`)
                 }
             } else {
                 title.push(`${line}\n`)
@@ -40,22 +47,5 @@ export class Polices {
         let file: string = title.join('')
         return file
     };
-    static polices(text: string) {
-
-        let Text: string = Polices.Strong(text);
-        Text = Polices.Italic(Text);
-        Text = Polices.Mocked(Text);
-        Text = Polices.Code(Text);
-        Text = Polices.Title(Text);
-        return Text;
-    }
     
 }
-
-
-export class Gestion {
-    static horizontalBreck(input: string): string {    //barre horisontal de séparation
-        return input.replace(/§/g, '<hr>')
-    }
-}
-
