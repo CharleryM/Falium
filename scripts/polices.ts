@@ -1,10 +1,11 @@
 export class Polices {
     static comiler(text: string) {                    //exécute toutes les polices
-        let compiled: string = Polices.Strong(text);
-        compiled = Polices.Italic(compiled);
-        compiled = Polices.Mocked(compiled);
-        compiled = Polices.Code(compiled);
-        compiled =  Polices.Title(compiled);
+        let compiled: string = ''
+        compiled = this.Strong(text);
+        compiled = this.Italic(compiled);
+        compiled = this.Mocked(compiled);
+        compiled = this.Code(compiled);
+        compiled = this.Title(compiled);
         return compiled;
     }
         static polices(text: string): string {
@@ -34,11 +35,12 @@ export class Polices {
             if (line.startsWith("#")) {
                 hashtag = line.split(' ', 2);
                 taille_title = (hashtag[0].length);
-                const titleText =  line.substring(hashtag[0].length + 1);
+                const titleText = line.substring(hashtag[0].length + 1);
+                const idTitle: string = titleText.replace(/ /g, '_')
                 if (taille_title > 6) {
                     title.push(`${line}`)
                 } else {
-                    title.push(`<h${taille_title}>${titleText}</h${taille_title}>\n`)
+                    title.push(`<h${taille_title} id=>'${idTitle}'>${titleText}</h${taille_title}>\n`)
                 }
             } else {
                 title.push(`${line}\n`)

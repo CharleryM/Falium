@@ -27,7 +27,7 @@ export class ToFalium {
             let text: string = data;
             let newText: string = '';
             newText = Polices.comiler(text);
-            newText = Gestion.HorizontalBreck(newText);
+            newText = Gestion.Compiler(newText);
             console.log(newText);
         });
     }

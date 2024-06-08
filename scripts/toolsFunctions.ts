@@ -8,4 +8,9 @@ export class ToolsFunctions {
         };
         return sliceResult
     }
+
+    static removeTextBetween(text: string, startChar: string, endChar: string): string {
+        const regex = new RegExp(`\\${startChar}.*?\\${endChar}`, 'g');
+        return text.replace(regex, '');
+    }
 }
