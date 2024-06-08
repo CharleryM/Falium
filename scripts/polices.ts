@@ -8,7 +8,7 @@ export class Polices {
         compiled = this.Title(compiled);
         return compiled;
     }
-        static polices(text: string): string {
+    static polices(text: string): string {
         throw new Error("Method not implemented.");
     }
     static Strong(text: string): string {             //gras

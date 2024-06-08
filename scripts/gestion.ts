@@ -4,13 +4,13 @@ export class Gestion {
     static Compiler(text: string) {
         let compiled = ''
         compiled = this.HorizontalBreck(text);
-        compiled = this.Summary(compiled);
+        compiled = this.anchoring(compiled);
         return compiled;
     }
     static HorizontalBreck(text: string): string {    //barre horisontal de séparation
         return text.replace(/§/g, '<hr>');
     }
-    static Summary(text: string): string {
+    static anchoring(text: string): string {
         let remove:string[]=[]
         let finalText: string[] = [];
         let lines: string[] = text.split('\n');
@@ -19,9 +19,9 @@ export class Gestion {
             if (/\[.*?\]/.test(line)) {
                 // Remplace le texte entre crochets par un lien
                 const summary: string = ToolsFunctions.SliceBetween(line, '[', ']');
-                const ink: string = ToolsFunctions.SliceBetween(line, '(', ')');
+                const anchor: string = ToolsFunctions.SliceBetween(line, '(', ')');
                 line = ToolsFunctions.removeTextBetween(line,'(',')')
-                const textLink: string = `<a href="${ink}">${summary}</a>`;
+                const textLink: string = `<a href="${anchor}">${summary}</a>`;
 
                 // Remplacer le texte original par le lien dans la ligne
                 const updatedLine = line.replace(/\[.*?\]/, textLink);
