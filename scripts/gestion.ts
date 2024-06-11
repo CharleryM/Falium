@@ -10,7 +10,7 @@ export class Gestion {
     static HorizontalBreck(text: string): string {    //barre horisontal de séparation
         return text.replace(/§/g, '<hr>');
     }
-    static anchoring(text: string): string {
+    static anchoring(text: string): string {          // ancrage et sommaire
         let remove:string[]=[]
         let finalText: string[] = [];
         let lines: string[] = text.split('\n');
