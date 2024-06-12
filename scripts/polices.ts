@@ -40,7 +40,7 @@ export class Polices {
                 if (taille_title > 6) {
                     title.push(`${line}`)
                 } else {
-                    title.push(`<h${taille_title} id=>'${idTitle}'>${titleText}</h${taille_title}>\n`)
+                    title.push(`<h${taille_title} id='${idTitle}'>${titleText}</h${taille_title}>\n`)
                 }
             } else {
                 title.push(`${line}\n`)
