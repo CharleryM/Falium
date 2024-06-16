@@ -1,0 +1,10 @@
+/* style du bloc code */
+pre {
+    background-color: #84c3f1d6;
+    padding: 120px;
+    border: 1px solid #d1d1d1;
+}
+code {
+    font-family: "Courier New", Courier, monospace;
+    color: #040203;
+}

@@ -3,7 +3,9 @@ export class Polices {
         let compiled: string = ''
         compiled = this.Strong(text);
         compiled = this.Italic(compiled);
+        compiled = this.Underline(compiled);
         compiled = this.Mocked(compiled);
+    
         compiled = this.Code(compiled);
         compiled = this.Title(compiled);
         return compiled;
@@ -24,7 +26,7 @@ export class Polices {
         return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
     }
     static Code(text: string): string {               //bloque de code
-        return text.replace(/\`(.*?)\`/g, '<code>$1</code>');
+        return text.replace(/\`(.*?)\`/g, '<pre><code>$1</code></pre>');
     }
     static Title(text: string): string {              //gestion des titre limiter à unetalle de h6
         let taille_title: number = 0;

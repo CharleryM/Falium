@@ -30,22 +30,11 @@ export class ToFalium {
             let text: string = data;
             newText = Polices.comiler(text);
             newText = Gestion.Compiler(newText);
-            const htmlTemplate: string = `
-        <!DOCTYPE html>
-            <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Document</title>
-                </head>
-                <body>
-                    ${newText}
-                </body>
-            </html>`
-
-            fs.writeFileSync(fileName + '.html', htmlTemplate)
+            const render: HTMLDivElement = document.createElement('div')
+            document.body.appendChild(render)
+            render.innerHTML = newText
             console.clear()
-            console.log(htmlTemplate);
+            console.log('compiled');
         });
     }
 }

@@ -11,7 +11,6 @@ export class Gestion {
         return text.replace(/§/g, '<hr>');
     }
     static anchoring(text: string): string {          // ancrage et sommaire
-        let remove:string[]=[]
         let finalText: string[] = [];
         let lines: string[] = text.split('\n');
 
