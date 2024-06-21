@@ -1,10 +1,26 @@
-/* style du bloc code */
+body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 pre {
-    background-color: #84c3f1d6;
-    padding: 120px;
-    border: 1px solid #d1d1d1;
+    background-color: #8b8989;
+    width: 300px;
+    border: 4px solid #3a3d3f40;
+    padding: 10px;
+    margin-left: 50px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    display: inline-block;
 }
 code {
     font-family: "Courier New", Courier, monospace;
-    color: #040203;
+    color: #fff;
+}
+
+.highlighte{
+    background-color: #8b8989;
+    color: burlywood;
 }

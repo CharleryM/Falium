@@ -30,9 +30,21 @@ export class ToFalium {
             let text: string = data;
             newText = Polices.comiler(text);
             newText = Gestion.Compiler(newText);
-            const render: HTMLDivElement = document.createElement('div')
-            document.body.appendChild(render)
-            render.innerHTML = newText
+            const template: string = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style/polices.css">
+                <title>Document</title>
+            </head>
+            <body>
+            ${newText}
+            </body>
+            </html>`
+
+            fs.writeFileSync(fileName + '.html', template)
             console.clear()
             console.log('compiled');
         });
