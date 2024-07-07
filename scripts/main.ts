@@ -40,7 +40,7 @@ export class ToFalium {
                 <title>Document</title>
             </head>
             <body>
-            ${newText}
+                ${newText}
             </body>
             </html>`
 
