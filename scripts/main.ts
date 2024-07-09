@@ -27,9 +27,20 @@ export class ToFalium {
                 return;
             }
 
-            let text: string = data;
-            newText = Polices.comiler(text);
-            newText = Gestion.Compiler(newText);
+            let lines: string[] = data.split('\n')
+            let newText: string = ''
+            
+            lines.forEach((line) => {
+                if (line.startsWith("\t\t")) {
+                    newText += `${Polices.Code(line)} <br>`;
+                    console.log('code')
+                }
+                let textCompiled:string = Polices.Comiler(line);
+                textCompiled = `${Gestion.Compiler(textCompiled)} <br>`;
+                newText += textCompiled;
+            });
+
+            
             const template: string = `
             <!DOCTYPE html>
             <html lang="en">
@@ -45,7 +56,7 @@ export class ToFalium {
             </html>`
 
             fs.writeFileSync(fileName + '.html', template)
-            console.clear()
+            // console.clear()
             console.log('compiled');
         });
     }

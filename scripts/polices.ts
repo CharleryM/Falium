@@ -1,11 +1,10 @@
 export class Polices {
-    static comiler(text: string) {                    //exécute toutes les polices
+    static Comiler(text: string) {                    //exécute toutes les polices
         let compiled: string = ''
         compiled = this.Strong(text);
         compiled = this.Italic(compiled);
         compiled = this.Underline(compiled);
         compiled = this.Mocked(compiled);
-        compiled = this.Code(compiled);
         compiled = this.Highlighte(compiled);
         compiled = this.Title(compiled);
         return compiled;
@@ -26,16 +25,16 @@ export class Polices {
         return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
     }
     static Code(text: string): string {               //bloque de code
-        return text.replace(/\`\`\`(.*?)\`\`\`/g, `
+        return text.replace(/\t\t(.*?)/g, `
             <div>
                 <br>
                 <pre>
                     <code>$1 </code>
                 </pre>
                 <br>
-            </div>`);
+            </div><br>`);
     }
-    static Highlighte(text: string): string {               //bloque de code
+    static Highlighte(text: string): string {               //surlinié
         return text.replace(/\`(.*?)\`/g, `<p class='highlighte'><code>$1</code></p>`);
     }
     static Title(text: string): string {              //gestion des titre limiter à unetalle de h6
