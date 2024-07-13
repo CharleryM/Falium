@@ -3,8 +3,8 @@
 
 **on teste le gras**, *l'italique*, ***italique gras***, **la combinaison *des deux* **, 
 
-`texte surlinier`, le ~~barré,~~ _le souligné_ 
-        la c'est du code avec des caractères spéciaux
+`texte surlinier,` le ~~barré,~~ _le souligné_ 
+``la c'est du code avec des caractères spéciaux``
 
 # test titre
 ## 2

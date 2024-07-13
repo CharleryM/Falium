@@ -1,5 +1,5 @@
 export class Polices {
-    static Comiler(text: string) {                    //exécute toutes les polices
+    static Cimpiler(text: string) {                    //exécute toutes les polices
         let compiled: string = ''
         compiled = this.Strong(text);
         compiled = this.Italic(compiled);
@@ -25,17 +25,17 @@ export class Polices {
         return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
     }
     static Code(text: string): string {               //bloque de code
-        return text.replace(/\t\t(.*?)/g, `
+        return text.replace(/\`\`(.*?)\`\`/g, `
             <div>
                 <br>
                 <pre>
                     <code>$1 </code>
                 </pre>
                 <br>
-            </div><br>`);
+            </div>`);
     }
-    static Highlighte(text: string): string {               //surlinié
-        return text.replace(/\`(.*?)\`/g, `<p class='highlighte'><code>$1</code></p>`);
+    static Highlighte(text: string): string {               //bloque de code
+        return text.replace(/\`(.*?)\`/g, `<code class='highlighte'>$1</code>`);
     }
     static Title(text: string): string {              //gestion des titre limiter à unetalle de h6
         let taille_title: number = 0;

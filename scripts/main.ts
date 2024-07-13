@@ -31,12 +31,12 @@ export class ToFalium {
             let newText: string = ''
             
             lines.forEach((line) => {
-                if (line.startsWith("\t\t")) {
+                if (line.startsWith('\`\`')) {
                     newText += `${Polices.Code(line)} <br>`;
                     console.log('code')
                 }
-                let textCompiled:string = Polices.Comiler(line);
-                textCompiled = `${Gestion.Compiler(textCompiled)} <br>`;
+                let textCompiled:string = Polices.Cimpiler(line);
+                textCompiled = Gestion.Compiler(textCompiled);
                 newText += textCompiled;
             });
 
