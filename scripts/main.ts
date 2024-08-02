@@ -27,18 +27,10 @@ export class ToFalium {
                 return;
             }
 
-            let lines: string[] = data.split('\n')
-            let newText: string = ''
-            
-            lines.forEach((line) => {
-                if (line.startsWith('\`\`')) {
-                    newText += `${Polices.Code(line)} <br>`;
-                    console.log('code')
-                }
-                let textCompiled:string = Polices.Cimpiler(line);
-                textCompiled = Gestion.Compiler(textCompiled);
-                newText += textCompiled;
-            });
+            let newText: string = ''            
+            let textCompiled:string = Polices.Compiler(data);
+            textCompiled = Gestion.Compiler(textCompiled);
+            newText += textCompiled;
 
             
             const template: string = `

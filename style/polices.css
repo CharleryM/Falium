@@ -9,7 +9,6 @@ pre {
     display: inline-block;
 }
 code {
-    display: flex;
     font-family: "Courier New", Courier, monospace;
     color: #FFF68B;
 }
