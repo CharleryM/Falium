@@ -1,5 +1,11 @@
 export class ToolsFunctions {
-    static SliceBetween(text: string, sliceStart: string, sliceEnd: string) {
+    
+    // Fonction utilitaire pour échapper les caractères spéciaux dans les délimiteurs de l'expression régulière
+    static escapeRegExp(string: string): string {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    static SliceString(text: string, sliceStart: string, sliceEnd: string) {
         const startSlice = text.indexOf(sliceStart);
         const endSlice = text.indexOf(sliceEnd);
         let sliceResult: string = '';
@@ -8,6 +14,21 @@ export class ToolsFunctions {
         };
         return sliceResult
     }
+
+    static SliceArray(text: string, sliceStart: string, sliceEnd: string): string[] {
+        let memory: string[] = [];
+
+        // Expression régulière pour capturer les textes entre les délimiteurs
+        const regex = new RegExp(`${this.escapeRegExp(sliceStart)}(.*?)${this.escapeRegExp(sliceEnd)}`, 'g');
+
+        let match: RegExpExecArray | null;
+        while ((match = regex.exec(text)) !== null) {
+            memory.push(match[1]); // Ajouter le texte capturé (groupe 1) au tableau
+        }
+
+        return memory;
+    }
+
 
     static removeTextBetween(text: string, startChar: string, endChar: string): string {
         const regex = new RegExp(`\\${startChar}.*?\\${endChar}`, 'g');
