@@ -2,9 +2,12 @@ import { ToolsFunctions } from "./toolsFunctions";
 
 export class Gestion {
     static Compiler(text: string) {
-        let compiled = ''
-        compiled = this.HorizontalBreck(text);
+        let compiled: string = ''
+        compiled = this.SaveCodeParts(text);
+        compiled = this.HorizontalBreck(compiled);
         compiled = this.anchoring(compiled);
+        compiled = this.Highlighte(compiled);
+
         return compiled;
     }
     static HorizontalBreck(text: string): string {    //barre horisontal de séparation
@@ -17,9 +20,9 @@ export class Gestion {
         lines.forEach((line) => {
             if (/\[.*?\]/.test(line)) {
                 // Remplace le texte entre crochets par un lien
-                const summary: string = ToolsFunctions.SliceBetween(line, '[', ']');
-                const anchor: string = ToolsFunctions.SliceBetween(line, '(', ')');
-                line = ToolsFunctions.removeTextBetween(line,'(',')')
+                const summary: string = ToolsFunctions.SliceString(line, '[', ']');
+                const anchor: string = ToolsFunctions.SliceString(line, '(', ')');
+                line = ToolsFunctions.removeTextBetween(line, '(', ')')
                 const textLink: string = `<a href="${anchor}">${summary}</a>`;
 
                 // Remplacer le texte original par le lien dans la ligne
@@ -34,4 +37,27 @@ export class Gestion {
         return file;
 
     }
+    static Highlighte(text: string): string {               //surligné
+        return text.replace(/(?<!`)`([^`]+)`(?!`)/g, `<code class='highlighte'>$1</code>`);
+    }
+    static SaveCodeParts(text: string): string {           //code
+        let textSlice: string[] = ToolsFunctions.SliceArray(text, '``', '``');
+        console.log(`${textSlice}\n`);
+
+        // Si textSlice est vide, on peut éviter la création de RegExp inutile
+        if (textSlice.length > 0) {
+            const generateCheckpoint: RegExp = new RegExp(`\\b(${textSlice.join('|')})\\b`, 'gi');
+            let checkpoint: string = text.replace(generateCheckpoint, '£point');
+            console.log(checkpoint);
+
+            let newText: string = checkpoint.replace(/``(.*?)``/g, `
+    <div><br><pre> <code>$1</code> </pre><br></div>`);
+            return newText;
+        } else {
+            // Si textSlice est vide, retourner le texte original ou une valeur par défaut
+            return text;
+        }
+    }
+
+
 }

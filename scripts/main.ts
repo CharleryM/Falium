@@ -2,6 +2,7 @@ import { Polices } from './polices';
 import { Gestion } from './gestion';
 import * as fs from 'fs';
 import path, { ParsedPath } from 'path';
+import { ToolsFunctions } from './toolsFunctions';
 
 export class ToFalium {
     // Déclaration de la méthode principale
@@ -27,29 +28,28 @@ export class ToFalium {
                 return;
             }
 
-            let newText: string = ''            
-            let textCompiled:string = Polices.Compiler(data);
+            // let newText: string|void = Gestion.SaveCodeParts(data)
+            let textCompiled: string = Polices.Compiler(data);
             textCompiled = Gestion.Compiler(textCompiled);
-            newText += textCompiled;
-
+            // newText += textCompiled;
             
             const template: string = `
             <!DOCTYPE html>
             <html lang="en">
-            <head>
+            <head>  
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="style/polices.css">
                 <title>Document</title>
             </head>
             <body>
-                ${newText}
+                ${textCompiled}
             </body>
             </html>`
 
             fs.writeFileSync(fileName + '.html', template)
             // console.clear()
-            console.log('compiled');
+            // console.log('compiled');
         });
     }
 }

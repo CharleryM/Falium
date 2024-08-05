@@ -5,7 +5,6 @@ export class Polices {
         compiled = this.Italic(compiled);
         compiled = this.Underline(compiled);
         compiled = this.Mocked(compiled);
-        compiled = this.Highlighte(compiled);
         compiled = this.Title(compiled);
         return compiled;
     }
@@ -24,19 +23,7 @@ export class Polices {
     static Underline(text: string): string {          //souligné
         return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
     }
-    static Highlighte(text: string): string {               //surligné
-        return text.replace(/\`(.*?)\`/g, `<code class='highlighte'>$1</code>`);
-    }
-    static Code(text: string): string {               //bloque de code
-        return text.replace(/\`\`(.*?)\`\`/g, `
-            <div>
-                <br>
-                <pre>
-                    <code>$1 </code>
-                </pre>
-                <br>
-            </div>`);
-    }
+   
     static Title(text: string): string {              //gestion des titre limiter à unetalle de h6
         let taille_title: number = 0;
         let lines: string[] = text.split('\n')

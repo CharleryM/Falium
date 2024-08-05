@@ -19,10 +19,10 @@ export class ToolsFunctions {
         let memory: string[] = [];
 
         // Expression régulière pour capturer les textes entre les délimiteurs
-        const regex = new RegExp(`${this.escapeRegExp(sliceStart)}(.*?)${this.escapeRegExp(sliceEnd)}`, 'g');
+        const sliceSave = new RegExp(`${this.escapeRegExp(sliceStart)}(.*?)${this.escapeRegExp(sliceEnd)}`, 'g');
 
         let match: RegExpExecArray | null;
-        while ((match = regex.exec(text)) !== null) {
+        while ((match = sliceSave.exec(text)) !== null) {
             memory.push(match[1]); // Ajouter le texte capturé (groupe 1) au tableau
         }
 
