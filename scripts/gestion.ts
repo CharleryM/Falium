@@ -1,13 +1,13 @@
 import { ToolsFunctions } from "./toolsFunctions";
 
 export class Gestion {
-    static Compiler(text: string) {
+    static Compiler(data:string, text: string) {
         let compiled: string = ''
         compiled = this.SaveCodeParts(text);
         compiled = this.HorizontalBreck(compiled);
         compiled = this.anchoring(compiled);
         compiled = this.Highlighte(compiled);
-
+        compiled = this.PastCode(data, compiled)
         return compiled;
     }
     static HorizontalBreck(text: string): string {    //barre horisontal de séparation
@@ -42,22 +42,36 @@ export class Gestion {
     }
     static SaveCodeParts(text: string): string {           //code
         let textSlice: string[] = ToolsFunctions.SliceArray(text, '``', '``');
-        console.log(`${textSlice}\n`);
 
         // Si textSlice est vide, on peut éviter la création de RegExp inutile
         if (textSlice.length > 0) {
             const generateCheckpoint: RegExp = new RegExp(`\\b(${textSlice.join('|')})\\b`, 'gi');
             let checkpoint: string = text.replace(generateCheckpoint, '£point');
-            console.log(checkpoint);
 
             let newText: string = checkpoint.replace(/``(.*?)``/g, `
-    <div><br><pre> <code>$1</code> </pre><br></div>`);
+            <div><br><pre> <code>$1</code> </pre><br></div>`);
             return newText;
         } else {
             // Si textSlice est vide, retourner le texte original ou une valeur par défaut
             return text;
         }
     }
+    static PastCode(data: string, text: string): string {
+        let textSlice: string[] = ToolsFunctions.SliceArray(data, '``', '``');
+        let newText: string = text;
+        
+        // Si textSlice est vide, on peut éviter la création de RegExp inutile
+        if (textSlice.length > 0) {
+            textSlice.forEach((index) => {
+                if (index !== undefined) { // Assurez-vous que index n'est pas undefined
+                    newText = newText.replace('£point', index);
+                }
+            });
+        }
+
+        return newText;
+    }
+
 
 
 }

@@ -30,7 +30,7 @@ export class ToFalium {
 
             // let newText: string|void = Gestion.SaveCodeParts(data)
             let textCompiled: string = Polices.Compiler(data);
-            textCompiled = Gestion.Compiler(textCompiled);
+            textCompiled = Gestion.Compiler(data, textCompiled);
             // newText += textCompiled;
             
             const template: string = `
@@ -48,8 +48,8 @@ export class ToFalium {
             </html>`
 
             fs.writeFileSync(fileName + '.html', template)
-            // console.clear()
-            // console.log('compiled');
+            console.clear()
+            console.log(textCompiled);
         });
     }
 }
