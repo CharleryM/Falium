@@ -66,8 +66,12 @@ export class Gestion {
                     newText = newText.replace('£point', index);
                 }
             });
+            this.Tabulation
         }
 
         return newText;
+    }
+    static Tabulation(text: string) {
+        return text.replace(/\t(.*?)/g, '&nbsp;&nbsp;&nbsp;&nbsp;')
     }
 }
