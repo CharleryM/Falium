@@ -49,7 +49,7 @@ export class ToFalium {
 
             fs.writeFileSync(fileName + '.html', template)
             console.clear()
-            console.log(textCompiled);
+            console.log('compiled');
         });
     }
 }

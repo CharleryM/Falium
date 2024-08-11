@@ -1,3 +1,4 @@
+import { BADNAME } from "dns";
 import { ToolsFunctions } from "./toolsFunctions";
 
 export class Gestion {
@@ -43,12 +44,10 @@ export class Gestion {
     static SaveCodeParts(text: string): string {           //code
         let textSlice: string[] = ToolsFunctions.SliceArray(text, '``', '``');
 
-        // Si textSlice est vide, on peut éviter la création de RegExp inutile
         if (textSlice.length > 0) {
             const generateCheckpoint: RegExp = new RegExp(`\\b(${textSlice.join('|')})\\b`, 'gi');
             let checkpoint: string = text.replace(generateCheckpoint, '£point');
-
-            let newText: string = checkpoint.replace(/``(.*?)``/g, `
+            let newText: string = checkpoint.replace(/``(.*?)``/gs, `
             <div><br><pre> <code>$1</code> </pre><br></div>`);
             return newText;
         } else {
@@ -71,7 +70,4 @@ export class Gestion {
 
         return newText;
     }
-
-
-
 }
