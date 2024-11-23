@@ -2,18 +2,18 @@ import { BADNAME } from "dns";
 import { ToolsFunctions } from "./toolsFunctions";
 
 export class Gestion {
-    static Compiler(data:string, text: string) {
+    static Compiler(text: string) {
         let compiled: string = ''
-        compiled = this.SaveCodeParts(text);
-        compiled = this.HorizontalBreck(compiled);
+        compiled = this.HorizontalBreck(text);
         compiled = this.anchoring(compiled);
         compiled = this.Highlighte(compiled);
-        compiled = this.PastCode(data, compiled)
         return compiled;
     }
+
     static HorizontalBreck(text: string): string {    //barre horisontal de séparation
         return text.replace(/§/g, '<hr>');
     }
+
     static anchoring(text: string): string {          // ancrage et sommaire
         let finalText: string[] = [];
         let lines: string[] = text.split('\n');
@@ -38,27 +38,40 @@ export class Gestion {
         return file;
 
     }
+
     static Highlighte(text: string): string {               //surligné
         return text.replace(/(?<!`)`([^`]+)`(?!`)/g, `<code class='highlighte'>$1</code>`);
     }
+
     static SaveCodeParts(text: string): string {           //code
         let textSlice: string[] = ToolsFunctions.SliceArray(text, '``', '``');
 
         if (textSlice.length > 0) {
-            const generateCheckpoint: RegExp = new RegExp(`\\b(${textSlice.join('|')})\\b`, 'gi');
+            console.log('il y a du texte')
+
+            textSlice.forEach((text, index: Number) => {
+                if (text === null ) {
+                }
+            })
+
+            const generateCheckpoint: RegExp = new RegExp(`\b(${textSlice.join('|')})\b`, 'gis'); // Ajout du flag 's'
             let checkpoint: string = text.replace(generateCheckpoint, '£point');
-            let newText: string = checkpoint.replace(/``(.*?)``/gs, `
-            <div><br><pre> <code>$1</code> </pre><br></div>`);
+
+            let newText: string = checkpoint.replace(/``([\s\S]*?)``/gs, `
+    <div><br><pre> <code>$1</code> </pre><br></div>`);
+
             return newText;
+
         } else {
             // Si textSlice est vide, retourner le texte original ou une valeur par défaut
             return text;
         }
     }
+
     static PastCode(data: string, text: string): string {
         let textSlice: string[] = ToolsFunctions.SliceArray(data, '``', '``');
         let newText: string = text;
-        
+
         // Si textSlice est vide, on peut éviter la création de RegExp inutile
         if (textSlice.length > 0) {
             textSlice.forEach((index) => {
@@ -71,6 +84,7 @@ export class Gestion {
 
         return newText;
     }
+
     static Tabulation(text: string) {
         return text.replace(/\t(.*?)/g, '&nbsp;&nbsp;&nbsp;&nbsp;')
     }

@@ -14,7 +14,6 @@ export class ToFalium {
         // Chemin vers le fichier Falium à interpréter
         const filePath = process.argv[2] as string; // Le premier argument (process.argv[0]) est le chemin vers Node.js et le deuxième argument (process.argv[1]) est le chemin vers votre script
         const fileName: string = (path.parse(filePath)).name
-        let newText: string = '';
       
         if (!filePath) {
             console.error("Veuillez spécifier le nom du fichier à interpréter.");
@@ -28,10 +27,11 @@ export class ToFalium {
                 return;
             }
 
-            // let newText: string|void = Gestion.SaveCodeParts(data)
-            let textCompiled: string = Polices.Compiler(data);
-            textCompiled = Gestion.Compiler(data, textCompiled);
-            // newText += textCompiled;
+            let textCompiled: string = Gestion.SaveCodeParts(data);
+            textCompiled = Polices.Compiler(textCompiled);
+            textCompiled = Gestion.Compiler(textCompiled);
+            textCompiled = Gestion.PastCode(data, textCompiled)
+
             
             const template: string = `
             <!DOCTYPE html>
@@ -48,8 +48,6 @@ export class ToFalium {
             </html>`
 
             fs.writeFileSync(fileName + '.html', template)
-            console.clear()
-            console.log('compiled');
         });
     }
 }
