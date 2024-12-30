@@ -7,6 +7,7 @@ export class Gestion {
         compiled = this.HorizontalBreck(text);
         compiled = this.anchoring(compiled);
         compiled = this.Highlighte(compiled);
+        compiled = this.newLine(compiled);
         return compiled;
     }
 
@@ -28,9 +29,9 @@ export class Gestion {
 
                 // Remplacer le texte original par le lien dans la ligne
                 const updatedLine = line.replace(/\[.*?\]/, textLink);
-                finalText.push(`${updatedLine}\n`);
+                finalText.push(`${updatedLine}<br>\n`);
             } else {
-                finalText.push(`${line}\n`);
+                finalText.push(`${line}<br>\n`);
             }
         });
 
@@ -87,5 +88,8 @@ export class Gestion {
 
     static Tabulation(text: string) {
         return text.replace(/\t(.*?)/g, '&nbsp;&nbsp;&nbsp;&nbsp;')
+    }
+    static newLine(text: string) {
+        return text.replace(/>>(.*?)/g, '<br>')
     }
 }

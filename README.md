@@ -3,12 +3,13 @@ Un langage de prise de note et d'écriture de formules facile et rapide. Ce lang
 
 Les commandes :
 
-- entourer le texte de * pour mettre en *italique*
-- entourer le texte de ** pour mettre en **gras**
-- entourer le texte de _ pour mettre en souligné
+- entourer le texte de `*` pour mettre en *italique*
+- entourer le texte de `**` pour mettre en **gras**
+- entourer le texte de `_` pour mettre en souligné
 - entourer le texte de ` pour mettre en code
-- entourer le texte de ~~ pour mettre en railler
-- commencer la ligne par # pour le titre plus vous en ajouter a la suite plus le tritre sera petit avec un limite de taille de 6
-- § permet de faire un ligne de séparation.
+- entourer le texte de `~~` pour mettre en railler
+- commencer la ligne par `#` pour le titre plus vous en ajouter a la suite plus le tritre sera petit avec un limite de taille de 6
+- `§` permet de faire un ligne de séparation.
 - entourer le texte de \` pour mettre en `surligné`
+- pour aller a la ligne il y a le `>>`
 
