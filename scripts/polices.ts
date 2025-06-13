@@ -1,7 +1,6 @@
 export class Polices {
-    static Compiler(text: string) {                    //exécute toutes les polices
-        let compiled: string = ''
-        compiled = this.Strong(text);
+    static Compiler(text: string, codeSave:string[]) {                    //exécute toutes les polices
+        let compiled: string = this.Strong(text);
         compiled = this.Italic(compiled);
         compiled = this.Underline(compiled);
         compiled = this.Mocked(compiled);
@@ -24,7 +23,7 @@ export class Polices {
         return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
     }
    
-    static Title(text: string): string {              //gestion des titre limiter à unetalle de h6
+    static Title(text: string): string {              //gestion des titre limiter à une talle de h6
         let taille_title: number = 0;
         let lines: string[] = text.split('\n')
         let hashtag: string[] = []

@@ -26,11 +26,11 @@ export class ToFalium {
                 console.error("Erreur lors de la lecture du fichier :", err);
                 return;
             }
-
-            let textCompiled: string = Gestion.SaveCodeParts(data);
-            textCompiled = Polices.Compiler(textCompiled);
-            textCompiled = Gestion.Compiler(textCompiled);
-            textCompiled = Gestion.PastCode(data, textCompiled)
+            let codeSave:string[]
+            let textCompiled: string = Gestion.SaveCodeParts(data, codeSave);
+            textCompiled = Polices.Compiler(textCompiled, codeSave);
+            textCompiled = Gestion.Compiler(textCompiled, codeSave);
+            textCompiled = Gestion.PastCode(data, textCompiled, codeSave)
 
             
             const template: string = `
