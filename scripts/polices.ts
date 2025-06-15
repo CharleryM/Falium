@@ -1,5 +1,5 @@
 export class Polices {
-    static Compiler(text: string, codeSave:string[]) {                    //exécute toutes les polices
+    static Compiler(text: string): string {                    
         let compiled: string = this.Strong(text);
         compiled = this.Italic(compiled);
         compiled = this.Underline(compiled);
@@ -7,23 +7,29 @@ export class Polices {
         compiled = this.Title(compiled);
         return compiled;
     }
-    static polices(text: string): string {
-        throw new Error("Method not implemented.");
-    }
-    static Strong(text: string): string {             //gras
+   
+    //gras
+    static Strong(text: string): string {             
         return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     }
-    static Italic(text: string): string {             //italique
+
+    //italique
+    static Italic(text: string): string {             
         return text.replace(/\*(.*?)\*/g, '<em>$1</em>');
     }
-    static Mocked(text: string): string {             //barré
+
+    //barré
+    static Mocked(text: string): string {             
         return text.replace(/\~\~(.*?)\~\~/g, '<s>$1</s>');
     }
-    static Underline(text: string): string {          //souligné
+
+    //souligné
+    static Underline(text: string): string {          
         return text.replace(/\_(.*?)\_/g, '<u>$1</u>');
     }
    
-    static Title(text: string): string {              //gestion des titre limiter à une talle de h6
+    //gestion des titre limiter à une talle de h6
+    static Title(text: string): string {              
         let taille_title: number = 0;
         let lines: string[] = text.split('\n')
         let hashtag: string[] = []

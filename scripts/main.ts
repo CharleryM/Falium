@@ -3,6 +3,7 @@ import { Gestion } from './gestion';
 import * as fs from 'fs';
 import path, { ParsedPath } from 'path';
 import { ToolsFunctions } from './toolsFunctions';
+import { log } from 'console';
 
 export class ToFalium {
     // Déclaration de la méthode principale
@@ -26,11 +27,11 @@ export class ToFalium {
                 console.error("Erreur lors de la lecture du fichier :", err);
                 return;
             }
-            let codeSave:string[]
-            let textCompiled: string = Gestion.SaveCodeParts(data, codeSave);
-            textCompiled = Polices.Compiler(textCompiled, codeSave);
-            textCompiled = Gestion.Compiler(textCompiled, codeSave);
-            textCompiled = Gestion.PastCode(data, textCompiled, codeSave)
+            let [textCompiled, codeSave] = Gestion.SaveCodeParts(data);
+            textCompiled = Polices.Compiler(textCompiled);
+            textCompiled = Gestion.Compiler(textCompiled);
+            textCompiled = Gestion.PastCode(textCompiled, codeSave)
+            console.log(textCompiled)
 
             
             const template: string = `

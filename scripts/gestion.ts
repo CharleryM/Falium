@@ -1,7 +1,7 @@
 import {ToolsFunctions} from "./toolsFunctions";
 
 export class Gestion {
-    static Compiler(text: string, codeSave:string[]) {
+    static Compiler(text: string): string {
         let compiled:string = this.HorizontalBreck(text);
         compiled = this.anchoring(compiled);
         compiled = this.Tabulation(compiled);
@@ -9,12 +9,14 @@ export class Gestion {
         compiled = this.newLine(compiled);
         return compiled;
     }
-
-    static HorizontalBreck(text: string): string {    //barre horisontal de séparation
+    
+    //barre horisontal de séparation
+    static HorizontalBreck(text: string): string {   
         return text.replace(/§/g, '<hr>');
     }
 
-    static anchoring(text: string): string {          // ancrage et sommaire
+    // ancrage et sommaire
+    static anchoring(text: string): string {          
         let finalText: string[] = [];
         let lines: string[] = text.split('\n');
 
@@ -38,47 +40,48 @@ export class Gestion {
 
     }
 
-    static highlight(text: string): string {               //surligné
+    //surligné
+    static highlight(text: string): string {               
         return text.replace(/(?<!`)`([^`]+)`(?!`)/g, `<code class='highlight'>$1</code>`);
     }
 
-    static SaveCodeParts(text: string): string {
-        let textSlice: string[] = ToolsFunctions.SliceArray(text, '\t>>', '<<');
+    // mettre de coté les textes à ne pas modiffier
+    static SaveCodeParts(data: string): [string, string[]] {
+    const textsSlice: string[] = ToolsFunctions.SliceArray(data, '>>', '<<');
+    let textWithChekpoints: string = data;
 
-        if (textSlice.length > 0) {
-            console.log('il y a du texte');
-
-            // Échapper chaque bloc de texte pour RegExp
-            const escapedSlice = textSlice.map(s => ToolsFunctions.escapeRegExp(s));
-            const generateCheckpoint = new RegExp(`(${escapedSlice.join('|')})`, 'gis');
-
-            let checkpoint: string = text.replace(generateCheckpoint, '£point');
-            console.log(checkpoint)
-
-            return checkpoint.replace(/\t>>([\s\S]*?)<</gs, `
-            <div><br><pre> <code>$1</code> </pre><br></div>`);
-        } else {
-            return text;
-        }
-    }
-
-    static PastCode(data: string, text: string): (string[] | string)[] {
-        const saveText: string[] = ToolsFunctions.SliceArray(data, '\t>>', '<<');
-        let newText: string = text;
+    if (textsSlice.length > 0) {
+        const escapedSlice = textsSlice.map(s => ToolsFunctions.escapeRegExp(s));
+        const generateCheckpoint = new RegExp(`(${escapedSlice.join('|')})`, 'gis');
 
         let pointIndex = 0;
+        textWithChekpoints = textWithChekpoints.replace(generateCheckpoint, () => `£point${pointIndex++}`);
+        return [textWithChekpoints.replace(/>>([\s\S]*?)<</gs, `
+        <div><br><pre> <code>$1</code> </pre><br></div>`), textsSlice];
+    } else {
+        return [textWithChekpoints, []];
+    }
+}
 
-        while (newText.includes('£point') && pointIndex < saveText.length) {
-            newText = newText.replace('£point', saveText[pointIndex]);
-            pointIndex++;
-        }
 
-        return [saveText, newText];
+    // remettre en place les textes mit de coté
+    static PastCode(text: string, codeSave: string[]): string {
+        let finalText = text;
+
+    codeSave.forEach((code, index) => {
+        const checkpoint = `£point${index}`;
+        finalText = finalText.replace(checkpoint, code);
+    });
+
+    return finalText;
     }
 
+    // créer des tabulations
     static Tabulation(text: string) {
         return text.replace(/\t/g, '&nbsp;&nbsp;')
     }
+
+    // faire des retour à la ligne
     static newLine(text: string) {
         return text.replace(/>>(.*?)/g, '<br>')
     }
