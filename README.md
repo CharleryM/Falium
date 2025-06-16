@@ -32,5 +32,5 @@ Pour avoir le résulta en html :
 - entourer le texte de `~~` pour mettre en railler
 - commencer la ligne par `#` pour le titre plus vous en ajouter à la suite plus le titre sera petit avec une limite de taille 6
 - `§` permet de faire une ligne de séparation.
-- entourer le texte de \` pour mettre en `surligné`
-- pour aller a la ligne il y a le `>>`
+<!-- - entourer le texte de \` pour mettre en `surligné` -->
+- pour écrire dans un bloc de code  commancez votre texte par `>>` et finissez par `<<`
