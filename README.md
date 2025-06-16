@@ -15,14 +15,19 @@ installer TypeScript
 
 
 ## Commandes pour compiler et lancer le script
-Compiler et créer le dossier : 
-Les commandes :
+Compiler et créer le dossier build : 
+La commandes pour linux:
 
-    tsc ***dfgdfg***
+    tsc
 
-Pour avoir le résulta en html : 
+Les commandes pour mac : 
 
-    node node ./build/main.js <nom_du_fichier.fal>
+    tsc --init
+    tsc
+
+Pour avoir le résultat en html : 
+
+    node ./build/main.js <nom_du_fichier.fal>
 
 ## Manuel et liste des outils mit en place
 - entourer le texte de `*` pour mettre en *italique*

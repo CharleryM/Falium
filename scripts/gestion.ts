@@ -57,7 +57,7 @@ export class Gestion {
         let pointIndex = 0;
         textWithChekpoints = textWithChekpoints.replace(generateCheckpoint, () => `£point${pointIndex++}`);
         return [textWithChekpoints.replace(/>>([\s\S]*?)<</gs, `
-        <div><br><pre> <code>$1</code> </pre><br></div>`), textsSlice];
+        <div><pre><code>$1</code></pre></div>`), textsSlice];
     } else {
         return [textWithChekpoints, []];
     }

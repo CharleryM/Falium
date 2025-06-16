@@ -31,7 +31,6 @@ export class ToFalium {
             textCompiled = Polices.Compiler(textCompiled);
             textCompiled = Gestion.Compiler(textCompiled);
             textCompiled = Gestion.PastCode(textCompiled, codeSave)
-            console.log(textCompiled)
 
             
             const template: string = `
