@@ -5,13 +5,16 @@ Un langage de prise de note et d'écriture de formules facile et rapide. Ce lang
 ### prérequis
 - node doit être installer
 
+installer TypeScript
+
+    sudo apt install node-typescript
+
+
 installez les packages
 
     npm i
 
-installer TypeScript
-
-    sudo apt install node-typescript
+>le fichier `./bash/installer-falium_modules_linux.sh` permet d'installer tout ce qui est nécessaire pour faire fonctionner le serveur.
 
 
 ## Commandes pour compiler et lancer le script
@@ -38,4 +41,4 @@ Pour avoir le résultat en html :
 - commencer la ligne par `#` pour le titre plus vous en ajouter à la suite plus le titre sera petit avec une limite de taille 6
 - `§` permet de faire une ligne de séparation.
 <!-- - entourer le texte de \` pour mettre en `surligné` -->
-- pour écrire dans un bloc de code  commancez votre texte par `>>` et finissez par `<<`
+- pour écrire dans un bloc de code  commancez votre texte par `>> ` et finissez par `<<`
