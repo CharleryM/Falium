@@ -26,6 +26,8 @@ fi
 
 # Compiler pour différentes plateformes avec nexe
 nexe ./build/main.js --build --verbose -t linux-x64-18.17.1 -o falium-linux-x64
+nexe ./build/main.js --build --verbose -t linux-x86-18.17.1 -o falium-linux-x86
 nexe ./build/main.js --build --verbose -t windows-x64-18.17.1 -o falium-windows-x64.exe
+nexe ./build/main.js --build --verbose -t windows-x86-18.17.1 -o falium-windows-x86.exe
 nexe ./build/main.js --build --verbose -t mac-x64-18.17.1 -o falium-mac-x64
 nexe ./build/main.js --build --verbose -t mac-arm64-18.17.1 -o falium-mac-arm64
