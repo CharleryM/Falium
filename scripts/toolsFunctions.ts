@@ -16,18 +16,18 @@ export class ToolsFunctions {
     }
 
     static SliceArray(text: string, sliceStart: string, sliceEnd: string): string[] {
-        let memory: string[] = [];
+    const memory: string[] = []; // const au lieu de let
 
-        // Expression régulière pour capturer les textes entre les délimiteurs
-        const sliceSave = new RegExp(`${this.escapeRegExp(sliceStart)}([\\s\\S]*?)${this.escapeRegExp(sliceEnd)}`, 'g');
+    // Expression régulière pour capturer les textes entre les délimiteurs
+    const sliceSave = new RegExp(`${this.escapeRegExp(sliceStart)}([\\s\\S]*?)${this.escapeRegExp(sliceEnd)}`, 'g');
 
-        let match: RegExpExecArray | null;
-        while ((match = sliceSave.exec(text)) !== null) {
-            memory.push(match[1]); // Ajouter le texte capturé (groupe 1) au tableau
-        }
-
-        return memory;
+    let match: RegExpExecArray | null;
+    while ((match = sliceSave.exec(text)) !== null) {
+        memory.push(match[1]); // Ajouter le texte capturé (groupe 1) au tableau
     }
+
+    return memory;
+}
 
 
     static removeTextBetween(text: string, startChar: string, endChar: string): string {

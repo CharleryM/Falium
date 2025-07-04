@@ -2,25 +2,20 @@
 [teste titre 4](#4)
 
 **on teste le gras,** *l'italique,* ***italique gras,*** **la combinaison *des deux*, ** 
-
 `texte surligné,` ~~le barré,~~ _le souligné_ 
->>la c'est du code avec **des** *caractères* _spéciaux_
+^^la c'est du code avec **des** *caractères* _spéciaux_
     zzzzzzzzz
         eeeeeeeeeeee
     rrrrrrrrrr
 ddddd
-`sssss` aaaaaaaa<<
+`sssss` aaaaaaaa^^
 
 # test titre
-## 2
-### 3
-
-§
-autre text
-§
-
-#### 4
-##### 5
-###### 6
-text # 1 ## 2
-####### 7
+## titre 2
+### titre 3§
+autre text§§§§
+#### titre 4
+##### titre 5
+###### titre 6
+text # tentative titre 1 ## tentative titre 2
+####### tentative titre 7

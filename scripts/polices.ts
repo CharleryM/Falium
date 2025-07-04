@@ -29,28 +29,27 @@ export class Polices {
     }
    
     //gestion des titre limiter à une talle de h6
-    static Title(text: string): string {              
-        let taille_title: number = 0;
-        let lines: string[] = text.split('\n')
-        let hashtag: string[] = []
-        let title: string[] = []
-        lines.forEach((line) => {
-            if (line.startsWith("#")) {
-                hashtag = line.split(' ', 2);
-                taille_title = (hashtag[0].length);
-                const titleText = line.substring(hashtag[0].length + 1);
-                const idTitle: string = titleText.replace(/ /g, '_')
-                if (taille_title > 6) {
-                    title.push(`${line}`)
-                } else {
-                    title.push(`<h${taille_title} id='${idTitle}'>${titleText}</h${taille_title}>\n`)
-                }
-            } else {
-                title.push(`${line}\n`)
-            }
-        })
-        let file: string = title.join('')
-        return file
-    };
+    static Title(text: string): string {
+    return text.split('\n').map(line => {
+        if (!line.startsWith('#')) {
+            return `${line}\n`;
+        }
+
+        const hashMatch = line.match(/^(#+)\s+(.+)$/);
+        if (!hashMatch) {
+            return `${line}\n`;
+        }
+
+        const [, hashes, titleText] = hashMatch;
+        const titleLevel = hashes.length;
+
+        if (titleLevel > 6) {
+            return `${line}\n`;
+        }
+
+        const idTitle = titleText.replace(/ /g, '_');
+        return `<h${titleLevel} id='${idTitle}'>${titleText}</h${titleLevel}>\n`;
+    }).join('');
+}
     
 }
